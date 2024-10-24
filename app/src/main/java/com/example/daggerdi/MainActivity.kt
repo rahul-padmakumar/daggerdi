@@ -12,11 +12,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.daggerdi.ui.theme.DaggerDiTheme
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var sampleRepo: SampleRepo
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val sampleComponent = DaggerSampleComponent.create()
+        sampleComponent.inject(this)
+        sampleRepo.printHello()
         setContent {
             DaggerDiTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
