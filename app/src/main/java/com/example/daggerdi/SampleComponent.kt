@@ -6,10 +6,8 @@ import dagger.Component
 interface SampleComponent {
     fun inject(mainActivity: MainActivity)
 
-    @Component.Builder
-    interface  Builder{
-
-        fun sampleModule(sampleModule: SampleModule): Builder
-        fun build(): SampleComponent
+    @Component.Factory
+    interface Factory{
+        fun create(sampleModule: SampleModule): SampleComponent
     }
 }

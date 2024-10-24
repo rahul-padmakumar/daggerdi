@@ -22,9 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val sampleComponent = DaggerSampleComponent.builder().sampleModule(
-            SampleModule()
-        ).build()
+        val sampleComponent = DaggerSampleComponent.factory().create(SampleModule())
         sampleComponent.inject(this)
         sampleRepo.printHello()
         setContent {
